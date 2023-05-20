@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.master')
+@section('title', 'Edit un Etudiant')
+
+@section('content')
     <h1 align="center"  class="m-4">Modifier les renseignements sur les étudiants</h1>
     <div class="container min-vh-80 d-flex justify-content-center align-items-center">
 <form action="/etudiants/{{$etudiant->id}}" method="post">
@@ -43,6 +37,4 @@
 </form>
    </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection

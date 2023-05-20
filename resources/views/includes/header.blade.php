@@ -8,9 +8,6 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/etudiants">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/etudiants/create">Ajouter</a>
-        </li>
        
       </ul>
     </div>

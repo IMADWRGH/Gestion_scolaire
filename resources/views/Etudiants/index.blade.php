@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+@extends('layouts.master')
+@section('title', 'Liste des Etudiants')
 
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
+@section('content')
+    <div class="container vh-100">
     <h1 align="center" class="m-4">la liste des étudiants</h1>
     <div class="d-flex flex-row-reverse m-4 ">
         <a  href="etudiants/create" class="rounded-pill p-2 text-bg-primary">Ajouter Etudiant</a>
@@ -47,6 +39,4 @@
     </tbody>
 </table>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection
