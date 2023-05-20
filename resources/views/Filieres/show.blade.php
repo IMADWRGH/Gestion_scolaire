@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center"  class="m-4">Afficher les données de filière</h1>
+    <div class="container min-vh-80 d-flex justify-content-center align-items-center">
+        <div class="card" style="width: 18rem;">
+        <ul class="list-group">
+            <li class="list-group-item fw-bold">Id :     <span class="">{{$filiere->id}}</span></li>
+            <li class="list-group-item ">Nom :     <span class="">{{$filiere->nom}}</span> </li>
+        </ul>
+       </div>
+   </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
