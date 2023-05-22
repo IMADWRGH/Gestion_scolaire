@@ -4,11 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
 use App\Models\Filiere;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class EtudiantController extends Controller
 {
-
+    public function insert(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => FacadesHash::make('password')
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+        $etudiant = Etudiant::create([
+            'nom' => 'required',
+            'prenom' => 'required',
+            'sexe' => 'required',
+            'filiere_id' => 'required',
+        ]);
+    }
     public function index()
     {
         $list_etudiants = Etudiant::all();

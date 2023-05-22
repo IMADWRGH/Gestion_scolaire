@@ -26,6 +26,14 @@
     <label for="prenom" class="form-label">Prenom :</label>
     <input type="text" class="form-control" name="prenom">
   </div>
+  <div class="mb-3">
+    <label for="prenom" class="form-label">Email :</label>
+    <input type="email" class="form-control" name="prenom">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password :</label>
+    <input type="password" class="form-control" name="password">
+  </div>
 
   <div class="input-group-text m-4">
     <label for="sexe" class="form-label">Sexe :</label>&nbsp;&nbsp;

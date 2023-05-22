@@ -13,6 +13,7 @@
             <th>Id</th>
             <th>Nom</th>
             <th>Prenom</th>
+            <th>Email</th>
             <th>Sexe</th>
             <th>Filiere</th>
             <th colspan="3">Option</th>
