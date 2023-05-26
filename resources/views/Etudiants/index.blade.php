@@ -16,17 +16,24 @@
             <th>Email</th>
             <th>Sexe</th>
             <th>Filiere</th>
-            <th colspan="3">Option</th>
+            <th colspan="4">Option</th>
         </tr>
     </thead>
     <tbody>
      @foreach ($etudiants as $data)
          <tr>
             <td>{{$data->id}}</td>
+            {{-- <td>{{$data->user_id}}</td> --}}
             <td>{{$data->nom}}</td>
             <td>{{$data->prenom}}</td>
+            @foreach ($users as $user)
+                <td>{{$user->email}}</td>
+            @endforeach
             <td>{{$data->sexe}}</td>
             <td>{{$data->filiere_id}}</td>
+             {{-- @foreach ($filieres as $filiere)
+                <td>{{$etudiants->filiere_id === $filiere->id ? $filiere->nom : 'Vide' }}</td>
+            @endforeach --}}
             <td><a href="/etudiants/{{$data->id}}/edit"><i class="bi bi-pen-fill"></i></a></td>
             <td><a href="/etudiants/{{$data->id}}"><i class="bi bi-eye-fill"></i></a></td>
             <th>

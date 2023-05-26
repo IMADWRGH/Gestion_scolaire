@@ -10,31 +10,41 @@ use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class EtudiantController extends Controller
 {
+
     public function store(Request $request)
     {
-        $request->validate($request, [
-            'email' => 'required|email',
-            'password' => FacadesHash::make('password')
-        ]);
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => FacadesHash::make('password')
-        ]);
-        $user->save();
-        $etudiant = Etudiant::create([
+        $request->validate([
             'nom' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:3',
             'prenom' => 'required',
             'sexe' => 'required',
-            'filiere_id' => 'required',
-            'user_id' => auth()->id(),
+            'filiere_id' => 'required'
+
         ]);
-        $etudiant->save();
+        $user = User::create([
+            'name' => $request->input('nom'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+        $etudiant = Etudiant::create([
+            'nom' => $request->input('nom'),
+            'prenom' => $request->input('prenom'),
+            'sexe' => $request->input('sexe'),
+            'filiere_id' => $request->input('filiere_id'),
+            'user_id' => $user->id,
+        ]);
         return redirect('/etudiants');
     }
+
+
+
+
     public function index()
     {
-        return view('etudiants.index', ['etudiants' => Etudiant::all()]);
+        $etudiants = Etudiant::all();
+        $users = User::all();
+        return view('etudiants.index', compact('etudiants', 'users'));
     }
 
     public function create()
@@ -43,23 +53,6 @@ class EtudiantController extends Controller
         return view('etudiants.form', ['filieres' => $list_filiere]);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'nom' => 'required',
-    //         'prenom' => 'required',
-    //         'sexe' => 'required',
-    //         'filiere_id' => 'required',
-    //     ]);
-    //     $etudiant = new Etudiant();
-    //     $etudiant->nom = $request->nom;
-    //     $etudiant->prenom = $request->prenom;
-    //     $etudiant->sexe = $request->sexe;
-    //     $etudiant->filiere_id = $request->filiere_id;
-    //     $etudiant->save();
-    //     return redirect('/etudiants')->with('status', 'L\'etudaint a bien ete ajoute avec success . ');
-    // }
-
     public function show(string $id)
     {
         return view('etudiants.show', ['etudiant' => Etudiant::find($id)]);
@@ -67,9 +60,10 @@ class EtudiantController extends Controller
 
     public function edit(string $id)
     {
+        $user = User::all();
         $filieres = Filiere::all();
         $etudiant = Etudiant::find($id);
-        return view('etudiants.edit', compact('etudiant', 'filieres'));
+        return view('etudiants.edit', compact('user', 'etudiant', 'filieres'));
     }
 
     public function update(Request $request, string $id)

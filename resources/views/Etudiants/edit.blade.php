@@ -15,6 +15,19 @@
     <label for="prenom" class="form-label">Prenom :</label>
     <input type="text" class="form-control" name="prenom" value="{{$etudiant->prenom}}">
   </div>
+  
+  {{-- <div class="mb-3">
+    <label for="email" class="form-label">Email :</label>
+    @foreach ($user as $data)
+    <input type="email" class="form-control" name="email" value="{{$data->email}}">
+    @endforeach
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password :</label>
+    @foreach ($user as $data)
+    <input type="password" class="form-control" name="password" value="{{$data->password}}">
+    @endforeach
+  </div> --}}
 
   <div class="input-group-text m-4">
     <label for="sexe" class="form-label">Sexe :</label>&nbsp;&nbsp;
