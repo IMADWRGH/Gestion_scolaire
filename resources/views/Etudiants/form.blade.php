@@ -4,35 +4,44 @@
 @section('content')
     <h1 align="center"  class="m-4">Ajouter un étudiant</h1>
     <div class="container min-vh-80 d-flex justify-content-center align-items-center">
-      @if (session('status'))
-          <div class="alert alert-success" role="alert">
-            <strong>{{session('status')}}</strong>
-          </div>
-      @endif
-     <ul>
-        @foreach ($errors->all() as $error)
-            <li class="alert alert-danger">{{$error}}</li>
-        @endforeach
-      </ul>
-    
 <form action="/etudiants" method="post">
      @csrf
      @method('post')
   <div class="mb-3">
     <label for="nom" class="form-label">Nom :</label>
-    <input type="text" class="form-control" name="nom">
+    <input type="text" class="form-control" name="nom" value="{{old('nom')}}">
+    @error('nom')
+        <div class="form-error text-danger">
+          {{$message}}
+        </div>
+    @enderror
   </div>
   <div class="mb-3">
     <label for="prenom" class="form-label">Prenom :</label>
-    <input type="text" class="form-control" name="prenom">
+    <input type="text" class="form-control" name="prenom" value="{{old('prenom')}}">
+     @error('prenom')
+        <div class="form-error text-danger">
+          {{$message}}
+        </div>
+    @enderror
   </div>
   <div class="mb-3">
-    <label for="prenom" class="form-label">Email :</label>
-    <input type="email" class="form-control" name="prenom">
+    <label for="eamil" class="form-label">Email :</label>
+    <input type="email" class="form-control" name="email" value="{{old('email')}}">
+     @error('email')
+        <div class="form-error text-danger">
+          {{$message}}
+        </div>
+    @enderror
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password :</label>
-    <input type="password" class="form-control" name="password">
+    <input type="password" class="form-control" name="password" value="{{old('password')}}">
+     @error('password')
+        <div class="form-error text-danger">
+          {{$message}}
+        </div>
+    @enderror
   </div>
 
   <div class="input-group-text m-4">
@@ -40,6 +49,11 @@
     <input class="form-check-input" type="radio" value="Male" name="sexe" >&nbsp;&nbsp;  Male
 &nbsp;&nbsp;
     <input class="form-check-input " type="radio" value="Female" name="sexe" >&nbsp;&nbsp;  Female
+   @error('sexe')
+        <div class="form-error text-danger">
+          {{$message}}
+        </div>
+    @enderror
   </div>
 
    <div class="mb-3">

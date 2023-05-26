@@ -10,27 +10,31 @@ use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class EtudiantController extends Controller
 {
-    public function insert(Request $request)
+    public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate($request, [
             'email' => 'required|email',
             'password' => FacadesHash::make('password')
         ]);
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
+            'password' => FacadesHash::make('password')
         ]);
+        $user->save();
         $etudiant = Etudiant::create([
             'nom' => 'required',
             'prenom' => 'required',
             'sexe' => 'required',
             'filiere_id' => 'required',
+            'user_id' => auth()->id(),
         ]);
+        $etudiant->save();
+        return redirect('/etudiants');
     }
     public function index()
     {
-        $list_etudiants = Etudiant::all();
-        return view('etudiants.index', ['etudiants' => $list_etudiants]);
+        return view('etudiants.index', ['etudiants' => Etudiant::all()]);
     }
 
     public function create()
@@ -39,22 +43,22 @@ class EtudiantController extends Controller
         return view('etudiants.form', ['filieres' => $list_filiere]);
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nom' => 'required',
-            'prenom' => 'required',
-            'sexe' => 'required',
-            'filiere_id' => 'required',
-        ]);
-        $etudiant = new Etudiant();
-        $etudiant->nom = $request->nom;
-        $etudiant->prenom = $request->prenom;
-        $etudiant->sexe = $request->sexe;
-        $etudiant->filiere_id = $request->filiere_id;
-        $etudiant->save();
-        return redirect('/etudiants')->with('status', 'L\'etudaint a bien ete ajoute avec success . ');
-    }
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'nom' => 'required',
+    //         'prenom' => 'required',
+    //         'sexe' => 'required',
+    //         'filiere_id' => 'required',
+    //     ]);
+    //     $etudiant = new Etudiant();
+    //     $etudiant->nom = $request->nom;
+    //     $etudiant->prenom = $request->prenom;
+    //     $etudiant->sexe = $request->sexe;
+    //     $etudiant->filiere_id = $request->filiere_id;
+    //     $etudiant->save();
+    //     return redirect('/etudiants')->with('status', 'L\'etudaint a bien ete ajoute avec success . ');
+    // }
 
     public function show(string $id)
     {
