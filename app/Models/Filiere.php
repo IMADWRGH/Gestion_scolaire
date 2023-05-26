@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Filiere extends Model
 {
+    protected $fillable = ['id', 'nom'];
+
     use HasFactory;
 }
